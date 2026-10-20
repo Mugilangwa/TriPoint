@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tripoint Limited - Diversified Service Provider</title>
+    <style>
+        /* General Reset & Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-dark: #121820;       /* Deep charcoal/navy from logo */
+            --accent-gold: #e5a93b;        /* Warm gold/amber accent */
+            --accent-gold-hover: #cc9331;  
+            --bg-light: #f4f6f8;
+            --text-main: #333333;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--primary-dark);
+            color: #fff;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            border-bottom: 3px solid var(--orange );
+            position: relative;
+        }
+
+        .logo-container img {
+            width: 100px;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        /* Mobile Menu Toggle Button */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            padding: 5px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Mobile Responsiveness Styles */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav {
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-in-out;
+            }
+
+            nav.active {
+                max-height: 300px; /* Adjust if you add more items */
+            }
+
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                gap: 15px;
+                padding: 20px 0 10px 0;
+                border-top: 1px solid rgba(255,255,255,0.1);
+                margin-top: 15px;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(18, 24, 32, 0.8), rgba(18, 24, 32, 0.8)), url('tripodimage1.jpg') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .hero h1 span {
+            color: var(--accent-gold);
+        }
+
+        .hero p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #d1d5db;
+        }
+
+        /* Automated Image Slider Animation */
+        .slider-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 40px auto;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            background-color: #000;
+        }
+
+        .slider-track {
+            display: flex;
+            width: 400%;
+            animation: slideAnimation 16s infinite ease-in-out;
+        }
+
+        .slide {
+            width: 25%;
+            flex-shrink: 0;
+        }
+
+        .slider-track img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        @keyframes slideAnimation {
+            0%   { transform: translateX(0%); }
+            22%  { transform: translateX(0%); }
+            28%  { transform: translateX(-25%); }
+            50%  { transform: translateX(-25%); }
+            56%  { transform: translateX(-50%); }
+            78%  { transform: translateX(-50%); }
+            84%  { transform: translateX(-75%); }
+            100% { transform: translateX(-75%); }
+        }
+
+        /* Sections */
+        section {
+            padding: 50px 10%;
+        }
+
+        /* What We Do & Service Cards */
+        .what-we-do {
+            background-color: #ffffff;
+            text-align: center;
+        }
+
+        .what-we-do h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+        }
+
+        .what-we-do > p {
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            color: #555;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+            list-style: none;
+        }
+
+        .service-card {
+            background: var(--bg-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: left;
+            border-top: 4px solid var(--accent-gold);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .service-card h3 {
+            padding: 15px 15px 5px 15px;
+            font-size: 1.2rem;
+            color: var(--primary-dark);
+        }
+
+        .service-card p {
+            padding: 0 15px 20px 15px;
+            font-size: 0.92rem;
+            color: #666;
+        }
+
+        /* Quick Contact Form */
+        .quick-contact {
+            background-color: #fff;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--accent-gold);
+        }
+
+        .quick-contact h2 {
+            margin-bottom: 20px;
+            color: var(--primary-dark);
+        }
+
+        .quick-contact form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .quick-contact label {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .quick-contact input, 
+        .quick-contact textarea {
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        .quick-contact textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        .quick-contact button {
+            background-color: var(--accent-gold);
+            color: var(--primary-dark);
+            border: none;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .quick-contact button:hover {
+            background-color: var(--accent-gold-hover);
+            color: #fff;
+        }
+
+        /* Social Media Hot Buttons */
+        .social-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .social-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: opacity 0.2s;
+        }
+
+        .social-btn:hover {
+            opacity: 0.85;
+        }
+
+        .btn-linkedin { background-color: #0a66c2; }
+        .btn-twitter { background-color: #000000; }
+        .btn-whatsapp { background-color: #25d366; }
+        .btn-email { background-color: #ea4335; }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-dark);
+            color: #cbd5e1;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+            border-top: 3px solid var(--accent-gold);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="logo-container">
+            <img src="logo.jpg.png" alt="Tripoint Limited Logo">
+        </div>
+        <!-- Hamburger Toggle Button -->
+        <button class="menu-toggle" id="mobile-menu" aria-label="Toggle Navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about us.html">Services</a></li>
+                <li><a href="mission and vision.html">Mission and Vision</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>WELCOME TO <span>TRIPOINT LIMITED</span></h1>
+        <p>TRIPOINT LIMITED is a Tanzanian-registered private company limited by shares, incorporated under the Companies Act, Cap 212. We are a diversified service provider headquartered in Dar es Salaam, Tanzania, dedicated to simplifying business for corporates, NGOs, government agencies, and individuals under one roof.</p>
+    </section>
+
+    <!-- Automated Image Slider Animation -->
+    <div class="slider-container">
+        <div class="slider-track">
+            <div class="slide"><img src="tripodimage1.jpg" alt="Tripoint Operation 1"></div>
+            <div class="slide"><img src="tripodimage 2.jpg" alt="Tripoint Operation 2"></div>
+            <div class="slide"><img src="tripodimage 3.jpg" alt="Tripoint Operation 3"></div>
+            <div class="slide"><img src="tripodimage5.jpg" alt="Tripoint Operation 4"></div>
+        </div>
+    </div>
+
+    <!-- What We Do Section with Relevant Image Cards -->
+    <section class="what-we-do" id="services">
+        <h2>What We Do</h2>
+        <p>We provide a wide range of integrated, reliable, and affordable solutions across key sectors:</p>
+        
+        <ul class="services-grid">
+            <li class="service-card">
+                <img src="tripodimage1.jpg" alt="Mobility">
+                <h3>Mobility</h3>
+                <p>Reliable fleet and transport solutions tailored for corporate and personal transit needs.</p>
+            </li>
+            <li class="service-card">
+                <img src="tripodimage5.jpg" alt="Tourism">
+                <h3>Tourism</h3>
+                <p>Showcasing the best of Tanzania with expertly managed tourism and travel experiences.</p>
+            </li>
+            <li class="service-card">
+                <img src="tripodimage 3.jpg" alt="Logistics">
+                <h3>Logistics</h3>
+                <p>Efficient supply chain, freight, and cargo delivery services across the region.</p>
+            </li>
+            <li class="service-card">
+                <img src="tripodimage4.jpg" alt="Technology">
+                <h3>Technology</h3>
+                <p>Innovative tech infrastructure and digital solutions designed to accelerate business growth.</p>
+            </li>
+            <li class="service-card">
+                <img src="tripodimage 7.jpg" alt="Mining Support">
+                <h3>Mining Support</h3>
+                <p>Professional operational and logistical backup services tailored to the mining sector.</p>
+            </li>
+            <li class="service-card">
+                <img src="tripodimage 6.jpg" alt="Agriculture">
+                <h3>Agriculture</h3>
+                <p>Modern agricultural support systems promoting sustainable food production and farming.</p>
+            </li>
+            <li class="service-card">
+                <img src="tripodimage8.jpg" alt="General Commerce">
+                <h3>General Commerce</h3>
+                <p>Diversified trade, procurement, and commercial supply solutions under one roof.</p>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Quick Contact Form Section -->
+    <section class="quick-contact" id="contact">
+        <h2>Contact Us</h2>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer with Social Media Hot Buttons & Quick  links -->
+     <footer style="background-color: var(--primary-dark); color: #cbd5e1; text-align: left; padding: 50px 10% 30px 10%; font-size: 0.9rem; border-top: 3px solid var(--accent-gold);">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; margin-bottom: 30px;">
+            
+            <!-- Column 1: About / Description -->
+            <div>
+                <h3 style="color: #fff; margin-bottom: 15px; font-size: 1.1rem;">Tripoint Limited</h3>
+                <p style="color: #d1d5db; font-size: 0.9rem; line-height: 1.5; margin-bottom: 15px;">
+                    A diversified service provider headquartered in Dar es Salaam, simplifying business across mobility, tourism, logistics, technology, and more.
+                </p>
+                <div class="social-buttons" style="justify-content: flex-start; margin-top: 0;">
+                    <a href="https://linkedin.com" target="_blank" class="social-btn btn-linkedin">LinkedIn</a>
+                    <a href="https://twitter.com" target="_blank" class="social-btn btn-twitter">X (Twitter)</a>
+                    <a href="https://whatsapp.com" target="_blank" class="social-btn btn-whatsapp">WhatsApp</a>
+                    <a href="mailto:info@tripoint.co.tz" class="social-btn btn-email">Email Us</a>
+                </div>
+            </div>
+
+            <!-- Column 2: Quick Links -->
+            <div>
+                <h3 style="color: #fff; margin-bottom: 15px; font-size: 1.1rem;">Quick Links</h3>
+                <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px;">
+                    <li><a href="index.html" style="color: #cbd5e1; text-decoration: none; transition: color 0.3s;">Home</a></li>
+                    <li><a href="about us.html" style="color: #cbd5e1; text-decoration: none; transition: color 0.3s;">Services</a></li>
+                    <li><a href="mission and vision.html" style="color: #cbd5e1; text-decoration: none; transition: color 0.3s;">Mission and Vision</a></li>
+                    <li><a href="contact.html" style="color: #cbd5e1; text-decoration: none; transition: color 0.3s;">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <!-- Column 3: Get In Touch / Office Location -->
+            <div>
+                <h3 style="color: #fff; margin-bottom: 15px; font-size: 1.1rem;">Get In Touch</h3>
+                <p style="color: #cbd5e1; margin-bottom: 8px;"><strong>Office Location:Five star Close,Goba,</strong></p> 
+                <p sytle="color:#cbd5e1;margin-bottom:4px;"><strong>P.O BOX 4599,Dar es Salaam</strong></p>
+                <p style="color:#cbd5e1;margin-bottom:4px"><strong>Working Hours: 8:00 AM - 5:00 PM Monday - Friday</strong></p>
+                <p stle="color" #cbd5e1;margin-bottom:8px;><strong>phone number:0754366104</strong></p>
+                <p style="color: #cbd5e1; margin-bottom: 8px;"><strong>Email:</strong> info@tripoint.co.tz</p>
+                <strong><phone>
+                <whatsapp:></whatsapp:></strong>
+                <a href="https://wa.me/0754366104"  target="blank" style="color:#000;text-decoration:none;background-color:#25d366;padding:0% 8px;border: radius 4px;">chat on whatsapp</a>"
+
+            </div>
+            </div>
+           <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center;">
+            <p>&copy; 2026 Tripoint Limited. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+         <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        const mobileMenuToggle = document.getElementById('mobile-menu');
+        const navMenu = document.querySelector('nav');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>
+
+```

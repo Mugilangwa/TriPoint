@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Tripoint Limited</title>
+    
+    <!-- Bootstrap 5 Online CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons Online CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm py-3">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../assets/images/logo/img.png" alt="Tripoint Logo" style="height: 50px; object-fit: contain;" onerror="this.src='https://via.placeholder.com/150x50?text=TRIPOINT'">
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center fw-semibold">
+                    <li class="nav-item"><a class="nav-link text-dark" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="../about/index.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="../mission/index.html">Mission & Vision</a></li>
+                    <li class="nav-item"><a class="nav-link active text-warning" href="index.html">Contact</a></li>
+                    <li class="nav-item ms-lg-4 mt-3 mt-lg-0">
+                        <a href="index.html" class="btn btn-orange px-4 py-2 fw-bold text-white rounded-1">Get a Quote</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="py-5 text-center" style="background: linear-gradient(135deg, rgba(13, 27, 42, 0.9), rgba(11, 87, 164, 0.8)), url('../assets/images/images/img5.jpeg') center/cover;">
+        <div class="container py-4">
+            <h1 class="text-white display-4 fw-bold mb-3">Contact Us</h1>
+            <p class="text-light mb-0 fs-5">We are here to answer your questions and provide reliable solutions.</p>
+        </div>
+    </header>
+
+    <!-- Contact Info & Form Section -->
+    <section class="py-5 bg-light-gray">
+        <div class="container">
+            <div class="row g-5">
+                
+                <!-- Left Side: Contact Information -->
+                <div class="col-lg-4">
+                    <h3 class="fw-bold text-dark mb-4">Get In Touch</h3>
+                    <p class="text-muted mb-4">Have an inquiry or want to work with us? Reach out through any of these channels. Our team is ready to assist you.</p>
+                    
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="icon-box me-3 text-primary fs-4" style="width: 50px; height: 50px; background: white; border-radius: 50%;">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Our Location</h6>
+                            <p class="text-muted small mb-0">Dar es Salaam, Tanzania</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="icon-box me-3 text-primary fs-4" style="width: 50px; height: 50px; background: white; border-radius: 50%;">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Email Us</h6>
+                            <p class="text-muted small mb-0">info@tripoint.co.tz</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="icon-box me-3 text-primary fs-4" style="width: 50px; height: 50px; background: white; border-radius: 50%;">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Call Us</h6>
+                            <p class="text-muted small mb-0">+255 700 000 000</p>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center">
+                        <div class="icon-box me-3 text-primary fs-4" style="width: 50px; height: 50px; background: white; border-radius: 50%;">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h6 class="fw-bold mb-1">Working Hours</h6>
+                            <p class="text-muted small mb-0">Mon - Sat: 8:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Contact Form -->
+                <div class="col-lg-8">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 p-md-5 bg-white">
+                        <h4 class="fw-bold text-dark mb-4">Send Us a Message</h4>
+                        <form id="contactForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold text-muted">Full Name</label>
+                                    <input type="text" class="form-control bg-light" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label small fw-bold text-muted">Email Address</label>
+                                    <input type="email" class="form-control bg-light" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold text-muted">Phone Number</label>
+                                    <input type="tel" class="form-control bg-light" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold text-muted">Subject / Service Needed</label>
+                                    <input type="text" class="form-control bg-light" placeholder="e.g., Cargo Transport Quote" required>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label small fw-bold text-muted">Your Message</label>
+                                    <textarea class="form-control bg-light" rows="5" required></textarea>
+                                </div>
+                                <div class="col-12 mt-4">
+                                    <button type="submit" class="btn btn-orange px-5 py-2 fw-bold text-white rounded-1 w-100">Send Message <i class="fas fa-paper-plane ms-2"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                        <div id="successMessage" class="alert alert-success mt-4 d-none border-0">
+                            <i class="fas fa-check-circle me-2"></i> Thank you! Your message has been sent successfully. We will get back to you shortly.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQs Section (NEW) -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold text-dark">Frequently Asked Questions</h2>
+                <p class="text-muted">Quick answers to common questions about our services.</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <!-- FAQ 1 -->
+                        <div class="accordion-item border-0 border-bottom mb-2">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fw-bold text-dark shadow-none bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    Do you offer nationwide delivery?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted small">
+                                    Yes! We provide reliable transport and logistics services across all regions in Tanzania. Whether it's Dar es Salaam, Arusha, Mwanza, or Mbeya, our fleet is ready to deliver your cargo safely.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- FAQ 2 -->
+                        <div class="accordion-item border-0 border-bottom mb-2">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fw-bold text-dark shadow-none bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    Is my cargo insured during transit?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted small">
+                                    Absolutely. We prioritize the safety of your goods. All our transport services include comprehensive insurance coverage to give you peace of mind from pickup to delivery.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- FAQ 3 -->
+                        <div class="accordion-item border-0 border-bottom mb-2">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fw-bold text-dark shadow-none bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    How do I request a quote for my business?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted small">
+                                    You can easily request a quote by filling out the contact form above, calling us directly at +255 700 000 000, or sending us a message via WhatsApp using the floating button on your screen. Our team responds within 24 hours.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-0">
+        <div class="container-fluid p-0">
+            <!-- Ramani ya Dar es Salaam (Unaweza kubadilisha link ya iframe hapa chini na location yako halisi) -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126743.64642822556!2d39.20832845!3d-6.792354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c4bae169bd6f1%3A0xc0e0c0c0c0c0c0c0!2sDar%20es%20Salaam!5e0!3m2!1sen!2stz!4v1700000000000!5m2!1sen!2stz" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer pt-5 pb-4 bg-dark-navy text-light">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-brand mb-3">
+                        <div class="bg-white p-2 rounded d-inline-block">
+                            <img src="../assets/images/logo/img.png" alt="Tripoint Logo" style="height: 40px; object-fit: contain;" onerror="this.src='https://via.placeholder.com/150x40/ffffff/000000?text=TRIPOINT'">
+                        </div>
+                    </div>
+                    <p class="small text-slate-300 mb-4" style="line-height: 1.8;">
+                        TRIPOINT LIMITED is a Tanzanian-registered diversified service provider headquartered in Dar es Salaam. We deliver integrated, reliable, and affordable solutions under one roof.
+                    </p>
+                    <div class="social-icons d-flex gap-2">
+                        <a href="#" class="social-btn"><i class="fab fa-facebook-f fa-sm"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-twitter fa-sm"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-instagram fa-sm"></i></a>
+                        <a href="#" class="social-btn"><i class="fab fa-linkedin-in fa-sm"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h6 class="fw-bold text-white mb-4">Quick Links</h6>
+                    <ul class="list-unstyled small footer-links">
+                        <li class="mb-3"><a href="../index.html" class="footer-link">Home</a></li>
+                        <li class="mb-3"><a href="../about/index.html" class="footer-link">About Us</a></li>
+                        <li class="mb-3"><a href="../mission/index.html" class="footer-link">Mission & Vision</a></li>
+                        <li class="mb-3"><a href="index.html" class="footer-link">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="fw-bold text-white mb-4">Our Services</h6>
+                    <ul class="list-unstyled small footer-links">
+                        <li class="mb-3"><a href="index.html" class="footer-link">Passenger Transport</a></li>
+                        <li class="mb-3"><a href="index.html" class="footer-link">Cargo & Logistics</a></li>
+                        <li class="mb-3"><a href="index.html" class="footer-link">Fuel Transport</a></li>
+                        <li class="mb-3"><a href="index.html" class="footer-link">Fleet Hire</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="fw-bold text-white mb-4">Contact Info</h6>
+                    <ul class="list-unstyled small text-slate-300">
+                        <li class="mb-3 d-flex">
+                            <i class="fas fa-map-marker-alt me-3 mt-1 text-orange"></i>
+                            <span>Dar es Salaam,<br>Tanzania</span>
+                        </li>
+                        <li class="mb-3 d-flex">
+                            <i class="fas fa-envelope me-3 mt-1 text-orange"></i>
+                            <a href="mailto:info@tripoint.co.tz" class="footer-link">info@tripoint.co.tz</a>
+                        </li>
+                        <li class="mb-4 d-flex">
+                            <i class="fas fa-phone-alt me-3 mt-1 text-orange"></i>
+                            <a href="tel:+255700000000" class="footer-link">+255 700 000 000</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-top border-secondary border-opacity-25 pt-4 mt-2">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+                        <p class="small text-slate-400 mb-0">&copy; 2026 TRIPOINT COMPANY LIMITED. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <a href="#" class="footer-link small me-3">Privacy Policy</a>
+                        <a href="#" class="footer-link small">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-buttons">
+        <a href="https://wa.me/255700000000?text=Hello%20Tripoint,%20I%20have%20a%20question" target="_blank" class="float-btn btn-whatsapp shadow" title="Chat on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="tel:+255700000000" class="float-btn btn-call shadow" title="Call Us Now">
+            <i class="fas fa-phone-alt"></i>
+        </a>
+        <a href="#" class="float-btn btn-top shadow" id="backToTop" title="Back to Top">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        // Back to top button
+        const backToTopBtn = document.getElementById("backToTop");
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                backToTopBtn.style.display = "flex";
+            } else {
+                backToTopBtn.style.display = "none";
+            }
+        };
+        backToTopBtn.addEventListener("click", function(e) {
+            e.preventDefault();
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+
+        // Contact Form Simulation
+        const contactForm = document.getElementById('contactForm');
+        const successMessage = document.getElementById('successMessage');
+
+        if (contactForm && successMessage) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault(); 
+                contactForm.style.display = 'none';
+                successMessage.classList.remove('d-none');
+                setTimeout(() => {
+                    contactForm.reset();
+                    contactForm.style.display = 'block';
+                    successMessage.classList.add('d-none');
+                }, 5000);
+            });
+        }
+    </script>
+</body>
+</html>

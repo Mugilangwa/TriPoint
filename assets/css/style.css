@@ -1,0 +1,258 @@
+/* =========================================
+   TRIPOINT LIMITED - CUSTOM CSS
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+:root {
+    --primary-blue: #0b57a4;
+    --orange-accent: #f38218;
+    --dark-navy: #0d1b2a;
+    --bg-gray: #f8f9fa;
+    --text-dark: #333333;
+    --text-muted: #6c757d;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+/* Helper Classes */
+.text-orange { color: var(--orange-accent) !important; }
+.bg-blue { background-color: var(--primary-blue) !important; }
+.bg-dark-navy { background-color: var(--dark-navy) !important; }
+.bg-light-gray { background-color: var(--bg-gray) !important; }
+.bg-primary { background-color: var(--primary-blue) !important; }
+
+/* Custom Buttons */
+.btn-orange {
+    background-color: var(--orange-accent);
+    border: none;
+    transition: all 0.3s ease;
+}
+.btn-orange:hover {
+    background-color: #d96d0f;
+    color: #fff;
+}
+
+/* Navbar */
+.navbar {
+    padding: 15px 0;
+    transition: all 0.3s;
+}
+.navbar .nav-link {
+    padding: 10px 15px;
+    transition: color 0.2s;
+}
+.navbar .nav-link:hover {
+    color: var(--orange-accent) !important;
+}
+.navbar-brand img {
+    height: 50px;
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(90deg, rgba(11, 87, 164, 0.85) 0%, rgba(11, 87, 164, 0.4) 100%), 
+                url('../images/images/hero1.png') center/cover no-repeat;
+    min-height: 550px;
+    padding: 80px 0;
+    position: relative;
+}
+
+/* Features Bar */
+.features-bar {
+    background-color: var(--primary-blue);
+    border-bottom: 3px solid var(--orange-accent);
+}
+
+/* Service Cards */
+.service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px !important;
+    background-color: #ffffff;
+}
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+}
+.icon-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(11, 87, 164, 0.05);
+    border-radius: 10px;
+    color: var(--primary-blue) !important;
+}
+
+/* CTA Bar */
+.bg-blue {
+    background-color: var(--primary-blue);
+}
+
+/* =========================================
+   FOOTER STYLING
+   ========================================= */
+.footer {
+    font-size: 0.95rem;
+    background-color: var(--dark-navy);
+}
+.footer h6 {
+    letter-spacing: 0.5px;
+    font-size: 1rem;
+}
+.footer-links a {
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+.footer-links a:hover {
+    color: #ffffff !important;
+    padding-left: 5px;
+}
+.hover-white:hover {
+    color: #ffffff !important;
+}
+
+/* Rangi ya maandishi yanayosomeka kwenye Footer nyeusi */
+.text-slate-300 {
+    color: #CBD5E1 !important;
+}
+.text-slate-400 {
+    color: #94A3B8 !important;
+}
+
+/* Viungo vya Footer (Links) */
+.footer-link {
+    color: #94A3B8 !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.footer-link:hover {
+    color: var(--orange-accent) !important;
+    padding-left: 5px; 
+}
+
+/* Alama za Mitandao ya Kijamii (Social Icons) */
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #94A3B8;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.social-btn:hover {
+    background-color: var(--orange-accent);
+    color: #ffffff;
+    transform: translateY(-3px);
+}
+
+/* Kurekebisha fomu ya Newsletter kwenye footer */
+.footer .form-control {
+    background-color: #1E293B;
+    color: #ffffff;
+}
+.footer .form-control::placeholder {
+    color: #64748B;
+}
+
+/* =========================================
+   FLOATING ACTION BUTTONS (Chini Kushoto)
+   ========================================= */
+.floating-buttons {
+    position: fixed;
+    bottom: 30px;
+    right: 30px; /* Nimeweka left kama ulivyoomba */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 1050;
+}
+
+.float-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.float-btn:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+/* WhatsApp Button */
+.btn-whatsapp {
+    background-color: #25d366;
+}
+.btn-whatsapp:hover {
+    background-color: #1ebe57;
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+}
+
+/* Call Button */
+.btn-call {
+    background-color: var(--primary-blue);
+}
+.btn-call:hover {
+    background-color: #08437f;
+    box-shadow: 0 5px 15px rgba(11, 87, 164, 0.4);
+}
+
+/* Back to Top Button */
+.btn-top {
+    background-color: var(--orange-accent);
+    display: none; 
+}
+.btn-top:hover {
+    background-color: #d96d0f;
+    box-shadow: 0 5px 15px rgba(243, 130, 24, 0.4);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 400px;
+        text-align: center;
+        background: linear-gradient(180deg, rgba(11, 87, 164, 0.9) 0%, rgba(11, 87, 164, 0.7) 100%), 
+                    url('../images/images/hero1.png') center/cover no-repeat;
+    }
+    .hero-section h1 {
+        font-size: 2.2rem;
+    }
+    .features-bar .border-end {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+    .features-bar .col:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    .floating-buttons {
+        bottom: 20px;
+        left: 20px;
+    }
+    .float-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+}
