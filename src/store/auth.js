@@ -93,7 +93,7 @@ const actions = {
     // 🔐 LOGIN
    async login(email, password, rememberMe = false) {
     try {
-        const response = await axiosInstance.post('/login/', {
+        const response = await axiosInstance.post('/login', {
             email,
             password
         });
