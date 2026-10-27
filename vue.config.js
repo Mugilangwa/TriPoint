@@ -1,10 +1,7 @@
-
 const path = require('path');
 
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'production'
-        ? '/TriPoint/'
-        : '/',
+    publicPath: '/',
 
     pluginOptions: {
         i18n: {
@@ -16,7 +13,6 @@ module.exports = {
     },
 
     chainWebpack: config => {
-        // Remove prefetch plugin
         config.plugins.delete('prefetch');
     },
 
