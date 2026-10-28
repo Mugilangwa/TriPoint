@@ -1,7 +1,7 @@
 import axios from 'axios';
-
+import { BASE_URL } from "@/config/config.js";
 export const axiosInstance = axios.create({
-    baseURL: process.env.VUE_APP_API_BASE_URL || 'http://127.0.0.1:8000/api/v1',
+    baseURL: BASE_URL,
     headers: {
         'Content-Type': 'application/json',
     },
@@ -35,7 +35,7 @@ axiosInstance.interceptors.response.use(
         if (
             error.response?.status === 401 &&
             !originalRequest._retry &&
-            !originalRequest.url.includes('/auth/refresh')
+            !originalRequest.url.includes('/refresh')
         ) {
             originalRequest._retry = true;
 
