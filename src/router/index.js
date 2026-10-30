@@ -4,22 +4,20 @@ import store from '../store';
 
 const routes = [
     // ==========================================
-    // 1. PUBLIC WEBSITE ROUTES (Wateja wote wanaweza kuingia)
+    // 1. PUBLIC WEBSITE ROUTES
     // ==========================================
     {
         path: '/',
         name: 'home',
         component: () => import('../views/website/Home.vue'),
-        meta: { layout: 'website', requiresAuth: false }, // Layout ya tovuti
+        meta: { layout: 'website', requiresAuth: false },
     },
-
     {
         path: '/about',
         name: 'about',
         component: () => import('../views/website/About.vue'),
         meta: { layout: 'website', requiresAuth: false },
     },
-    
     {
         path: '/contact',
         name: 'contact',
@@ -35,18 +33,24 @@ const routes = [
     {
         path: '/cars',
         name: 'cars',
-        component: () => import('../views/website/Cars.vue'), // Ukurasa wa magari
+        component: () => import('../views/website/Cars.vue'),
         meta: { layout: 'website', requiresAuth: false },
     },
     {
         path: '/properties',
         name: 'properties',
-        component: () => import('../views/website/Properties.vue'), // Ukurasa wa nyumba/viwanja
+        component: () => import('../views/website/Properties.vue'),
+        meta: { layout: 'website', requiresAuth: false },
+    },
+    {
+        path: '/properties/:type/:id',
+        name: 'property-detail',
+        component: () => import('../views/website/PropertyDetail.vue'),
         meta: { layout: 'website', requiresAuth: false },
     },
 
     // ==========================================
-    // 2. AUTH ROUTES (Login & Register)
+    // 2. AUTH ROUTES
     // ==========================================
     {
         path: '/login',
@@ -61,14 +65,14 @@ const routes = [
         meta: { layout: 'auth', requiresAuth: false },
     },
 
-    // // ==========================================
-    // // 3. PROTECTED ROUTES (Dashboard ya Admin/Mteja)
-    // // ==========================================
+    // ==========================================
+    // 3. PROTECTED ROUTES (Dashboard)
+    // ==========================================
     {
         path: '/dashboard',
         name: 'dashboard',
         component: () => import('../views/dashboard/Index.vue'),
-        meta: { layout: 'app', requiresAuth: true }, // Inahitaji login
+        meta: { layout: 'app', requiresAuth: true },
     },
 
     // --- Car Rental ---
@@ -76,6 +80,12 @@ const routes = [
         path: '/dashboard/vehicles',
         name: 'manage-vehicles',
         component: () => import('../views/dashboard/Vehicles.vue'),
+        meta: { layout: 'app', requiresAuth: true },
+    },
+    {
+        path: '/dashboard/vehicles/:id',
+        name: 'vehicle-detail',
+        component: () => import('../views/dashboard/VehicleDetail.vue'),
         meta: { layout: 'app', requiresAuth: true },
     },
     {
@@ -90,17 +100,8 @@ const routes = [
         component: () => import('../views/dashboard/Bookings.vue'),
         meta: { layout: 'app', requiresAuth: true },
     },
-
-        // --- Vehicle Hires (Bookings) ---
     {
-        path: '/dashboard/bookings',
-        name: 'manage-bookings',
-        component: () => import('../views/dashboard/Bookings.vue'),
-        meta: { layout: 'app', requiresAuth: true },
-    },
-    {
-        // Hii itatumika kwa kuongeza mpya (Create) NA kuhariri (Edit)
-        path: '/dashboard/bookings/form/:id?', // `:id?` inamaanisha ID sio lazima (optional)
+        path: '/dashboard/bookings/form/:id?',
         name: 'booking-form',
         component: () => import('../views/dashboard/BookingForm.vue'),
         meta: { layout: 'app', requiresAuth: true },
@@ -111,9 +112,12 @@ const routes = [
         component: () => import('../views/dashboard/Clients.vue'),
         meta: { layout: 'app', requiresAuth: true },
     },
-     
-
-    
+    {
+        path: '/dashboard/properties/:type/:id',
+        name: 'admin-property-detail',
+        component: () => import('../views/dashboard/PropertyDetail.vue'),
+        meta: { layout: 'app', requiresAuth: true },
+    },
 
     // --- Real Estate ---
     {
@@ -134,6 +138,12 @@ const routes = [
         component: () => import('../views/dashboard/Inquiries.vue'),
         meta: { layout: 'app', requiresAuth: true },
     },
+    {
+        path: '/dashboard/inquiries/form/:id?',
+        name: 'inquiry-form',
+        component: () => import('../views/dashboard/InquiryForm.vue'),
+        meta: { layout: 'app', requiresAuth: true },
+    },
 
     // --- Settings ---
     {
@@ -148,52 +158,6 @@ const routes = [
         component: () => import('../views/dashboard/Users.vue'),
         meta: { layout: 'app', requiresAuth: true },
     },
-
-        // --- Property Inquiries ---
-    {
-        path: '/dashboard/inquiries',
-        name: 'manage-inquiries',
-        component: () => import('../views/dashboard/Inquiries.vue'),
-        meta: { layout: 'app', requiresAuth: true },
-    },
-    {
-        path: '/dashboard/inquiries/form/:id?',
-        name: 'inquiry-form',
-        component: () => import('../views/dashboard/InquiryForm.vue'),
-        meta: { layout: 'app', requiresAuth: true },
-    },
-
-
-    // {
-    //     path: '/dashboard/bookings',
-    //     name: 'bookings',
-    //     component: () => import('../views/dashboard/Bookings.vue'),
-    //     meta: { layout: 'app', requiresAuth: true },
-    // },
-    // {
-    //     path: '/dashboard/clients',
-    //     name: 'clients',
-    //     component: () => import('../views/dashboard/Clients.vue'),
-    //     meta: { layout: 'app', requiresAuth: true },
-    // },
-    // {
-    //     path: '/dashboard/vehicles',
-    //     name: 'manage-vehicles',
-    //     component: () => import('../views/dashboard/Vehicles.vue'),
-    //     meta: { layout: 'app', requiresAuth: true },
-    // },
-    // {
-    //     path: '/dashboard/properties',
-    //     name: 'manage-properties',
-    //     component: () => import('../views/dashboard/Properties.vue'),
-    //     meta: { layout: 'app', requiresAuth: true },
-    // },
-    // {
-    //     path: '/dashboard/inquiries',
-    //     name: 'inquiries',
-    //     component: () => import('../views/dashboard/Inquiries.vue'),
-    //     meta: { layout: 'app', requiresAuth: true },
-    // },
 
     // ==========================================
     // 4. ERROR ROUTES
@@ -215,8 +179,11 @@ const router = createRouter({
     linkExactActiveClass: 'active',
     routes,
     scrollBehavior(to, from, savedPosition) {
+        // Kurasa zinapobadilika, inarudi juu
         if (savedPosition) {
             return savedPosition;
+        } else if (to.hash) {
+            return { el: to.hash, behavior: 'smooth' }; // Kwa ajili ya #contact-form
         } else {
             return { left: 0, top: 0 };
         }
@@ -227,17 +194,17 @@ const router = createRouter({
 // NAVIGATION GUARD
 // =======================
 router.beforeEach((to, from, next) => {
-    // 1. Set Layout (website, auth, au app)
+    // Set Layout
     if (to.meta && to.meta.layout) {
         store.commit('setLayout', to.meta.layout);
     } else {
-        store.commit('setLayout', 'website'); // Default layout ni ya tovuti
+        store.commit('setLayout', 'website');
     }
 
-    // 2. Check authentication (Token ipo kwenye localStorage?)
+    // Check authentication
     const isAuthenticated = localStorage.getItem('access_token') !== null;
 
-    // 3. Kama ukurasa unahitaji login, na mtu hajaingia, mpeleke kwenye Login
+    // Kama ukurasa unahitaji login, na mtu hajaingia
     if (to.meta.requiresAuth && !isAuthenticated) {
         next({
             name: 'login',
@@ -246,13 +213,13 @@ router.beforeEach((to, from, next) => {
         return;
     }
 
-    // 4. Kama mtu ameingia (ana Token) na anataka kwenda kwenye Login, mpeleke Dashboard
+    // Kama mtu ameingia na anataka kwenda kwenye Login/Register, mpeleke Dashboard
     if ((to.name === 'login' || to.name === 'register') && isAuthenticated) {
         next({ name: 'dashboard' });
         return;
     }
 
-    // 5. Ruhusu mtu aendelee
+    // Ruhusu
     next();
 });
 

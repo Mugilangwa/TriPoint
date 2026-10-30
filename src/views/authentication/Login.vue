@@ -55,10 +55,10 @@
                         <router-link to="/auth/pass-recovery" class="forgot-link">Forgot Password?</router-link>
                     </div>
 
-                    <button type="submit" class="btn w-100 auth-btn mb-3" :disabled="loading">
-                        <span v-if="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                        {{ loading ? 'Logging in...' : 'Login' }}
-                    </button>
+                   <button type="submit" class="btn bg-info w-100 auth-btn mb-3" :disabled="loading">
+    <span v-if="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+    {{ loading ? 'Logging in...' : 'Login' }}
+</button>
 
                     <div class="form-check mb-3">
                         <input type="checkbox" class="form-check-input" id="chkRemember" v-model="rememberMe" />

@@ -10,6 +10,10 @@
                     <div class="carousel-item active h-100">
                         <img src="@/assets/images/images/img18.jpeg" class="d-block w-100 h-100" style="object-fit: cover;" alt="Logistics">
                     </div>
+
+                     <div class="carousel-item active h-100">
+                        <img src="@/assets/images/images/allimg.png" class="d-block w-100 h-100" style="object-fit: cover;" alt="Logistics">
+                    </div>
                     <div class="carousel-item h-100">
                         <img src="@/assets/images/images/img15.jpeg" class="d-block w-100 h-100" style="object-fit: cover;" alt="Real Estate">
                     </div>
@@ -121,7 +125,7 @@
                             </ul>
                             
                             <div class="mt-auto">
-                                <img src="@/assets/images/images/img20.jpeg" class="img-fluid rounded w-100 shadow-sm" style="height: 250px; object-fit: cover;" alt="Fleet">
+                                <img src="@/assets/images/images/allimg.png" class="img-fluid rounded w-100 shadow-sm" style="height: 250px; object-fit: cover;" alt="Fleet">
                             </div>
                         </div>
                     </div>
@@ -171,62 +175,64 @@
         <!-- =========================================
              WHY TRIPOINT? (Rows Layout)
              ========================================= -->
+                  <!-- =========================================
+             WHY TRIPOINT? (Icons Kubwa na Zinazosomeka)
+             ========================================= -->
         <section class="py-5 bg-white">
-            <div class="container">
+            <div class="container py-4">
                 <div class="text-center mb-5">
-                    <h2 class="fw-bold text-dark">WHY TRIPOINT?</h2>
+                    <h6 class="fw-bold mb-2" style="color: #f38218; letter-spacing: 2px;">WHY CHOOSE US</h6>
+                    <h2 class="fw-bold text-dark display-6">Why TRIPOINT?</h2>
                     <p class="text-muted">We go the extra mile to ensure your mission succeeds.</p>
                 </div>
                 
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-                    <div class="col">
-                        <div class="card h-100 border-0 shadow-sm p-4 text-center rounded-4">
-                            <div class="card-body">
-                                <div class="mx-auto mb-3" style="width: 60px; height: 60px; background: rgba(11, 87, 164, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-headset fs-3" style="color: #0b57a4;"></i>
-                                </div>
-                                <h5 class="fw-bold text-dark mb-2">One Contact</h5>
-                                <h6 class="text-warning mb-2">Zero Stress</h6>
-                                <p class="text-muted small mb-0">Single point of contact for all your needs. We handle the complexities with transparent pricing.</p>
-                            </div>
+                <div class="row g-4">
+                    
+                    <!-- Kadi 1 -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="feature-card p-4 h-100 text-start">
+                            <!-- Icon Kubwa Moja kwa Moja -->
+                            <i class="fas fa-headset mb-3 d-block" style="font-size: 3rem; color: #0b57a4;"></i>
+                            
+                            <h5 class="fw-bold text-dark mb-1">One Contact</h5>
+                            <h6 class="mb-3" style="color: #f38218; font-size: 0.9rem; font-weight: 600;">Zero Stress</h6>
+                            <p class="text-muted small mb-0">Single point of contact for all your needs. We handle the complexities with transparent pricing.</p>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card h-100 border-0 shadow-sm p-4 text-center rounded-4">
-                            <div class="card-body">
-                                <div class="mx-auto mb-3" style="width: 60px; height: 60px; background: rgba(11, 87, 164, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-globe-africa fs-3" style="color: #0b57a4;"></i>
-                                </div>
-                                <h5 class="fw-bold text-dark mb-2">NGO & UN</h5>
-                                <h6 class="text-warning mb-2">Mission Ready</h6>
-                                <p class="text-muted small mb-0">Extensive experience working with UN agencies, NGOs, and diplomatic missions.</p>
-                            </div>
+
+                    <!-- Kadi 2 -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="feature-card p-4 h-100 text-start">
+                            <i class="fas fa-globe-africa mb-3 d-block" style="font-size: 3rem; color: #198754;"></i>
+                            
+                            <h5 class="fw-bold text-dark mb-1">NGO & UN</h5>
+                            <h6 class="mb-3" style="color: #f38218; font-size: 0.9rem; font-weight: 600;">Mission Ready</h6>
+                            <p class="text-muted small mb-0">Extensive experience working with UN agencies, NGOs, and diplomatic missions.</p>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card h-100 border-0 shadow-sm p-4 text-center rounded-4">
-                            <div class="card-body">
-                                <div class="mx-auto mb-3" style="width: 60px; height: 60px; background: rgba(11, 87, 164, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-user-shield fs-3" style="color: #0b57a4;"></i>
-                                </div>
-                                <h5 class="fw-bold text-dark mb-2">Vetted</h5>
-                                <h6 class="text-warning mb-2">Drivers</h6>
-                                <p class="text-muted small mb-0">Professional, trained, and security-conscious drivers for your safety on all terrains.</p>
-                            </div>
+
+                    <!-- Kadi 3 -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="feature-card p-4 h-100 text-start">
+                            <i class="fas fa-user-shield mb-3 d-block" style="font-size: 3rem; color: #f38218;"></i>
+                            
+                            <h5 class="fw-bold text-dark mb-1">Vetted</h5>
+                            <h6 class="mb-3" style="color: #f38218; font-size: 0.9rem; font-weight: 600;">Drivers</h6>
+                            <p class="text-muted small mb-0">Professional, trained, and security-conscious drivers for your safety on all terrains.</p>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="card h-100 border-0 shadow-sm p-4 text-center rounded-4">
-                            <div class="card-body">
-                                <div class="mx-auto mb-3" style="width: 60px; height: 60px; background: rgba(11, 87, 164, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                                    <i class="fas fa-tools fs-3" style="color: #0b57a4;"></i>
-                                </div>
-                                <h5 class="fw-bold text-dark mb-2">24/7</h5>
-                                <h6 class="text-warning mb-2">Replacement Guarantee</h6>
-                                <p class="text-muted small mb-0">Immediate vehicle replacement and dedicated support in the event of a breakdown.</p>
-                            </div>
+
+                    <!-- Kadi 4 -->
+                    <div class="col-md-6 col-lg-3">
+                        <div class="feature-card p-4 h-100 text-start">
+                            <i class="fas fa-tools mb-3 d-block" style="font-size: 3rem; color: #dc3545;"></i>
+                            
+                            <h5 class="fw-bold text-dark mb-1">24/7</h5>
+                            <h6 class="mb-3" style="color: #f38218; font-size: 0.9rem; font-weight: 600;">Replacement Guarantee</h6>
+                            <p class="text-muted small mb-0">Immediate vehicle replacement and dedicated support in the event of a breakdown.</p>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -388,5 +394,43 @@ onUnmounted(() => {
 .fade-leave-to {
   opacity: 0;
   transform: translateY(15px); /* Inatokea ikiwa imeshuka chini kidogo */
+}
+
+/* =========================================
+   WHY TRIPOINT? (Icon Cards)
+   ========================================= */
+.feature-card {
+    background: #ffffff;
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+/* Mduara wa Icon */
+.icon-wrapper {
+    width: 80px;
+    height: 80px;
+    background-color: rgba(11, 87, 164, 0.08); /* Rangi ya bluu iliyofifia */
+    color: #0b57a4; /* Rangi ya bluu kwa icon */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem; /* Ukubwa wa icon */
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect kwa Kadi */
+.feature-card:hover {
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    border-color: transparent;
+    transform: translateY(-8px);
+}
+
+/* Icon inabadilika rangi na kukua inapogusa kadi */
+.feature-card:hover .icon-wrapper {
+    background-color: #0b57a4;
+    color: #ffffff;
+    transform: scale(1.1);
 }
 </style>

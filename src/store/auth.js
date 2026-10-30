@@ -169,7 +169,7 @@ const actions = {
             const refresh = localStorage.getItem('refresh_token');
 
             if (refresh) {
-                await axiosInstance.post('/auth/logout/', {
+                await axiosInstance.post('/logout/', {
                     refresh
                 });
             }

@@ -18,17 +18,22 @@
 
         <div class="row layout-top-spacing">
             <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
-                <div class="panel br-6 p-4 shadow-sm bg-white rounded">
+                <div class="panel br-6 p-4 shadow-sm bg-white rounded-4 border-0">
                     
-                    <!-- Header & Add Button -->
-                    <div class="d-flex justify-content-between align-items-center mb-4">
+                    <!-- Header & Buttons -->
+                    <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
                         <div>
                             <h4 class="fw-bold mb-1" style="color: #0b57a4;">Land & Plots Management</h4>
                             <p class="text-muted small mb-0">Manage all available plots, prices, and images.</p>
                         </div>
-                        <button class="btn btn-light border px-4 py-2 fw-bold rounded-2 shadow-sm" @click="openModal()">
-                            <i class="fas fa-plus me-2"></i> Add New Plot
-                        </button>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-primary px-4 py-2 fw-bold rounded-2 shadow-sm" @click="loadPlots" :disabled="loading">
+                                <i class="fas fa-sync me-2" :class="{ 'fa-spin': loading }"></i> Refresh
+                            </button>
+                            <button class="btn btn-warning px-4 py-2 fw-bold text-white rounded-2 shadow-sm" style="background-color: #f38218; border: none;" @click="openModal()">
+                                <i class="fas fa-plus me-2"></i> Add New Plot
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Loading Spinner -->
@@ -74,10 +79,14 @@
 
                             <template #actions="props">
                                 <div class="d-flex gap-2 justify-content-center">
+                                    <!-- KITUFE CHA VIEW: Kinaelekeza kwenye PropertyDetail -->
+                                    <router-link :to="`/dashboard/properties/plot/${props.row.id}`" class="btn btn-sm btn-info text-white" title="View Details">
+                                        <i class="fas fa-eye"></i>
+                                    </router-link>
                                     <button class="btn btn-sm btn-outline-primary" @click="openModal(props.row)" title="Edit">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-outline-danger" @click="confirmDelete(props.row.plot_id)" title="Delete">
+                                    <button class="btn btn-sm btn-outline-danger" @click="confirmDelete(props.row.id)" title="Delete">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </div>
@@ -88,19 +97,19 @@
             </div>
         </div>
 
-        <!-- Add / Edit Modal (Kubwa - Modal XL) -->
+        <!-- Add / Edit Modal -->
         <div class="modal fade" id="plotModal" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-xl modal-dialog-centered"> <!-- Nimeongeza modal-xl -->
+            <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content border-0 shadow-lg rounded-4">
                     
-                    <div class="modal-header" style="background-color: #0b57a4; color: white; border-radius: 1rem 1rem 0 0;">
+                    <div class="modal-header bg-info text-white" >
                         <h5 class="modal-title fw-bold">{{ isEdit ? 'Edit Plot Details' : 'Add New Plot' }}</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                     </div>
 
                     <div class="modal-body p-4">
                         <form @submit.prevent="savePlot">
-                            <div class="row g-4"> <!-- g-4 inaongeza nafasi kati ya inputs -->
+                            <div class="row g-4">
                                 
                                 <!-- Supplier Dropdown -->
                                 <div class="col-md-6">
@@ -235,7 +244,7 @@ let deleteModal = null;
 let deleteId = ref(null);
 
 const form = ref({
-    plot_id: null,
+    id: null, // Nimebadilisha plot_id kuwa id kwa usalama
     supplier_id: null,
     location: '',
     size: '',
@@ -246,12 +255,11 @@ const form = ref({
     ownership_type: 'Freehold'
 });
 
-// V-Client-Table Configuration
 const columns = ref(['location', 'size', 'price', 'listing_type', 'listing_status', 'attachments', 'actions']);
 const table_options = ref({
     perPage: 10,
     perPageValues: [10, 25, 50, 100],
-    skin: 'table table-hover',
+    skin: 'table table-hover table-bordered mb-0',
     columnsClasses: {
         actions: 'text-center',
         attachments: 'text-center',
@@ -271,7 +279,6 @@ const table_options = ref({
     }
 });
 
-// Fetch Suppliers kwa ajili ya Dropdown
 const loadSuppliers = async () => {
     try {
         const response = await axiosInstance.get('/suppliers');
@@ -298,11 +305,21 @@ const openModal = (plot = null) => {
     selectedFiles.value = [];
     if (plot) {
         isEdit.value = true;
-        form.value = { ...plot };
+        form.value = { 
+            id: plot.id, 
+            supplier_id: plot.supplier_id, 
+            location: plot.location, 
+            size: plot.size, 
+            price: plot.price, 
+            description: plot.description, 
+            listing_type: plot.listing_type, 
+            listing_status: plot.listing_status, 
+            ownership_type: plot.ownership_type 
+        };
     } else {
         isEdit.value = false;
         form.value = {
-            plot_id: null,
+            id: null,
             supplier_id: null,
             location: '',
             size: '',
@@ -338,7 +355,6 @@ const savePlot = async () => {
     formData.append('listing_status', form.value.listing_status);
     formData.append('ownership_type', form.value.ownership_type);
 
-    // Ongeza picha
     selectedFiles.value.forEach(file => {
         formData.append('images[]', file);
     });
@@ -346,7 +362,7 @@ const savePlot = async () => {
     try {
         if (isEdit.value) {
             formData.append('_method', 'PUT');
-            await axiosInstance.post(`/plots/${form.value.plot_id}`, formData, {
+            await axiosInstance.post(`/plots/${form.value.id}`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
             showNotification('success', 'Updated!', 'Plot updated successfully.');
@@ -400,36 +416,8 @@ const getStatusClass = (status) => {
 
 onMounted(() => {
     loadPlots();
-    loadSuppliers(); // Pakia suppliers kwa dropdown
+    loadSuppliers();
     modal = new window.bootstrap.Modal(document.getElementById('plotModal'));
     deleteModal = new window.bootstrap.Modal(document.getElementById('deleteModal'));
 });
 </script>
-
-<style scoped>
-/* Kuboresha muonekano wa Table */
-:deep(.VueTables__table th) {
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    color: #6c757d;
-    background-color: #f8f9fa;
-    padding: 15px;
-    border-bottom: 2px solid #e9ecef;
-}
-:deep(.VueTables__table td) {
-    vertical-align: middle;
-    padding: 15px;
-    border-bottom: 1px solid #e9ecef;
-}
-:deep(.VueTables__search-field input) {
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    padding: 8px 12px;
-}
-:deep(.VueTables__limit-field select) {
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    padding: 8px 12px;
-}
-</style>

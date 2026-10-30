@@ -25,10 +25,12 @@
                             <h4 class="fw-bold mb-1" style="color: #0b57a4;">Client Directory</h4>
                             <p class="text-muted small mb-0">Manage all clients and their contact information.</p>
                         </div>
-                        <button class="btn btn-light border px-4 py-2 fw-bold rounded-2 shadow-sm" @click="openModal()">
+                        <button class="btn btn-warning border px-4 py-2 fw-bold rounded-2 shadow-sm" @click="openModal()">
                             <i class="fas fa-plus me-2"></i> Add New Client
                         </button>
                     </div>
+
+                    <hr>
 
                     <!-- Loading Spinner -->
                     <div v-if="loading" class="d-flex justify-content-center align-items-center py-5">
@@ -85,7 +87,7 @@
             <div class="modal-dialog modal-md modal-dialog-centered">
                 <div class="modal-content border-0 shadow-lg rounded-4">
                     
-                    <div class="modal-header" style="background-color: #0b57a4; color: white; border-radius: 1rem 1rem 0 0;">
+                    <div class="modal-header bg-info" >
                         <h5 class="modal-title fw-bold">{{ isEdit ? 'Edit Client Details' : 'Add New Client' }}</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                     </div>
@@ -286,26 +288,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-:deep(.VueTables__table th) {
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    color: #6c757d;
-    background-color: #f8f9fa;
-    padding: 15px;
-    border-bottom: 2px solid #e9ecef;
-}
-:deep(.VueTables__table td) {
-    vertical-align: middle;
-    padding: 15px;
-    border-bottom: 1px solid #e9ecef;
-}
-:deep(.VueTables__search-field input) {
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    padding: 8px 12px;
-}
-
 .avatar-circle {
     width: 40px;
     height: 40px;

@@ -20,15 +20,20 @@
             <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
                 <div class="panel br-6 p-4 shadow-sm bg-white rounded">
                     
-                    <!-- Header & Add Button -->
+                    <!-- Header & Buttons -->
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <div>
                             <h4 class="fw-bold mb-1" style="color: #0b57a4;">Vehicle Fleet Management</h4>
                             <p class="text-muted small mb-0">Manage all vehicles, availability, and images.</p>
                         </div>
-                        <button class="btn btn-light border px-4 py-2 fw-bold rounded-2 shadow-sm" @click="openModal()">
-                            <i class="fas fa-plus me-2"></i> Add New Vehicle
-                        </button>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-primary px-4 py-2 fw-bold rounded-2 shadow-sm" @click="loadVehicles" :disabled="loading">
+                                <i class="fas fa-sync me-2" :class="{ 'fa-spin': loading }"></i> Refresh
+                            </button>
+                            <button class="btn btn-warning px-4 py-2 fw-bold text-white rounded-2 shadow-sm" style="background-color: #f38218; border: none;" @click="openModal()">
+                                <i class="fas fa-plus me-2"></i> Add New Vehicle
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Loading Spinner -->
@@ -39,7 +44,8 @@
                     <!-- Data Table -->
                     <div v-else class="custom-table">
                         <v-client-table :data="vehicles" :columns="columns" :options="table_options">
-                                                        <!-- Picha ya Gari (Thumbnail) -->
+                            
+                            <!-- Picha ya Gari (Thumbnail) -->
                             <template #image="props">
                                 <div class="car-thumbnail">
                                     <img 
@@ -56,7 +62,7 @@
 
                             <!-- Registration & Model -->
                             <template #vehicle_details="props">
-                                <div class="fw-bold">{{ props.row.registration_number }}</div>
+                                <div class="fw-bold text-dark">{{ props.row.registration_number }}</div>
                                 <small class="text-muted">{{ props.row.car_model?.make }} {{ props.row.car_model?.model }}</small>
                             </template>
 
@@ -72,12 +78,25 @@
                                 </span>
                             </template>
 
+                            <!-- IMAGES COUNT (Idadi ya Picha) -->
+                            <template #images_count="props">
+                                <span class="badge bg-info rounded-pill">
+                                    <i class="fas fa-images me-1"></i> {{ (props.row.attachments || []).length }} Photos
+                                </span>
+                            </template>
+
                             <!-- Actions -->
                             <template #actions="props">
                                 <div class="d-flex gap-2 justify-content-center">
+                                    <!-- Kitufe cha View (Kuelekeza kwenye ukurasa wa VehicleDetail) -->
+                                    <router-link :to="`/dashboard/vehicles/${props.row.id}`" class="btn btn-sm btn-info text-white" title="View Details">
+                                        <i class="fas fa-eye"></i>
+                                    </router-link>
+                                    <!-- Kitufe cha Edit -->
                                     <button class="btn btn-sm btn-outline-primary" @click="openModal(props.row)" title="Edit">
                                         <i class="fas fa-edit"></i>
                                     </button>
+                                    <!-- Kitufe cha Delete -->
                                     <button class="btn btn-sm btn-outline-danger" @click="confirmDelete(props.row.id)" title="Delete">
                                         <i class="fas fa-trash"></i>
                                     </button>
@@ -94,7 +113,7 @@
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content border-0 shadow-lg rounded-4">
                     
-                    <div class="modal-header" style="background-color: #0b57a4; color: white; border-radius: 1rem 1rem 0 0;">
+                    <div class="modal-header bg-primary text-white">
                         <h5 class="modal-title fw-bold">{{ isEdit ? 'Edit Vehicle Details' : 'Add New Vehicle' }}</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                     </div>
@@ -136,16 +155,16 @@
                                     </select>
                                 </div>
 
-                                <!-- Attachments (Picha) -->
-                                <div class="col-12">
+                                <!-- Attachments (Picha) - Hapa unaweza kuongeza picha mpya tu -->
+                                <div class="col-12 mt-3">
                                     <div class="p-3 border rounded bg-light">
                                         <label class="form-label fw-bold small text-muted">
-                                            <i class="fas fa-camera me-2"></i> Upload Vehicle Images
+                                            <i class="fas fa-camera me-2"></i> Upload New Images (Optional)
                                         </label>
                                         <input type="file" class="form-control" multiple @change="handleFileUpload" accept="image/*">
-                                        <small class="text-muted d-block mt-1">Upload one or more images of the vehicle (JPG, PNG).</small>
+                                        <small class="text-muted d-block mt-1">Upload one or more images of the vehicle. Picha za zamani hazitafutwa.</small>
                                         
-                                        <!-- Preview ya Picha -->
+                                        <!-- Preview ya Picha Mpya -->
                                         <div v-if="selectedFiles.length > 0" class="mt-2 d-flex flex-wrap gap-2">
                                             <div v-for="(file, index) in selectedFiles" :key="index" class="border p-1 rounded bg-white shadow-sm d-flex align-items-center" style="font-size: 0.8rem;">
                                                 <i class="fas fa-file-image text-primary me-1"></i>
@@ -204,7 +223,7 @@ const { showNotification } = useNotification();
 useMeta({ title: 'Manage Vehicles' });
 
 const vehicles = ref([]);
-const models = ref([]); // Kwa ajili ya dropdown ya models
+const models = ref([]); 
 const loading = ref(false);
 const isEdit = ref(false);
 const selectedFiles = ref([]);
@@ -213,14 +232,14 @@ let deleteModal = null;
 let deleteId = ref(null);
 
 const form = ref({
-    vehicle_id: null,
+    id: null, // Badilisha kutoka vehicle_id kuwa id
     model_id: null,
     registration_number: '',
     vehicle_color: '',
     availability_status: 'available'
 });
 
-const columns = ref(['image', 'vehicle_details', 'color', 'status', 'actions']);
+const columns = ref(['image', 'vehicle_details', 'color', 'status', 'images_count', 'actions']);
 const table_options = ref({
     perPage: 10,
     perPageValues: [10, 25, 50, 100],
@@ -229,7 +248,8 @@ const table_options = ref({
         actions: 'text-center',
         image: 'text-center',
         status: 'text-center',
-        color: 'text-center'
+        color: 'text-center',
+        images_count: 'text-center'
     },
     sortable: ['registration_number', 'vehicle_color'],
     filterable: ['registration_number'],
@@ -238,11 +258,11 @@ const table_options = ref({
         vehicle_details: 'Vehicle / Registration',
         color: 'Color',
         status: 'Status',
+        images_count: 'Images',
         actions: 'Actions'
     }
 });
 
-// Load Models kwa ajili ya Dropdown
 const loadModels = async () => {
     try {
         const response = await axiosInstance.get('/vehicle-models');
@@ -269,11 +289,18 @@ const openModal = (vehicle = null) => {
     selectedFiles.value = [];
     if (vehicle) {
         isEdit.value = true;
-        form.value = { ...vehicle };
+        // Tumia spread operator na uhakikishe tunachukua ID sahihi
+        form.value = { 
+            id: vehicle.id, // Hapa ndipo tulipokosea, sasa ni id sio vehicle_id
+            model_id: vehicle.car_model?.id || null,
+            registration_number: vehicle.registration_number,
+            vehicle_color: vehicle.color,
+            availability_status: vehicle.status
+        };
     } else {
         isEdit.value = false;
         form.value = {
-            vehicle_id: null,
+            id: null,
             model_id: null,
             registration_number: '',
             vehicle_color: '',
@@ -301,7 +328,6 @@ const saveVehicle = async () => {
     formData.append('vehicle_color', form.value.vehicle_color);
     formData.append('availability_status', form.value.availability_status);
 
-    // Ongeza picha
     selectedFiles.value.forEach(file => {
         formData.append('images[]', file);
     });
@@ -309,7 +335,8 @@ const saveVehicle = async () => {
     try {
         if (isEdit.value) {
             formData.append('_method', 'PUT');
-            await axiosInstance.post(`/vehicles/${form.value.vehicle_id}`, formData, {
+            // Tumia form.value.id hapa
+            await axiosInstance.post(`/vehicles/${form.value.id}`, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
             showNotification('success', 'Updated!', 'Vehicle updated successfully.');
@@ -366,32 +393,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* Kuboresha muonekano wa Table */
-:deep(.VueTables__table th) {
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    color: #6c757d;
-    background-color: #f8f9fa;
-    padding: 15px;
-    border-bottom: 2px solid #e9ecef;
-}
-:deep(.VueTables__table td) {
-    vertical-align: middle;
-    padding: 15px;
-    border-bottom: 1px solid #e9ecef;
-}
-:deep(.VueTables__search-field input) {
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    padding: 8px 12px;
-}
-:deep(.VueTables__limit-field select) {
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    padding: 8px 12px;
-}
-
 /* Muundo wa Picha ya Gari kwenye Table */
 .car-thumbnail {
     width: 80px;

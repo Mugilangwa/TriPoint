@@ -17,17 +17,22 @@
 
         <div class="row layout-top-spacing">
             <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
-                <div class="panel br-6 p-4 shadow-sm bg-white rounded">
+                <div class="panel br-6 p-4 shadow-sm bg-white rounded-4 border-0">
                     
-                    <!-- Header & Add Button -->
-                    <div class="d-flex justify-content-between align-items-center mb-4">
+                    <!-- Header & Buttons -->
+                    <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
                         <div>
                             <h4 class="fw-bold mb-1" style="color: #0b57a4;">Apartments Management</h4>
                             <p class="text-muted small mb-0">Manage all available apartments, prices, and images.</p>
                         </div>
-                        <button class="btn btn-light border px-4 py-2 fw-bold rounded-2 shadow-sm" @click="openModal()">
-                            <i class="fas fa-plus me-2"></i> Add New Apartment
-                        </button>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-primary px-4 py-2 fw-bold rounded-2 shadow-sm" @click="loadApartments" :disabled="loading">
+                                <i class="fas fa-sync me-2" :class="{ 'fa-spin': loading }"></i> Refresh
+                            </button>
+                            <button class="btn btn-warning px-4 py-2 fw-bold text-white rounded-2 shadow-sm" style="background-color: #f38218; border: none;" @click="openModal()">
+                                <i class="fas fa-plus me-2"></i> Add New Apartment
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Loading Spinner -->
@@ -73,6 +78,10 @@
 
                             <template #actions="props">
                                 <div class="d-flex gap-2 justify-content-center">
+                                    <!-- KITUFE CHA VIEW -->
+                                    <router-link :to="`/dashboard/properties/apartment/${props.row.id}`" class="btn btn-sm btn-info text-white" title="View Details">
+                                        <i class="fas fa-eye"></i>
+                                    </router-link>
                                     <button class="btn btn-sm btn-outline-primary" @click="openModal(props.row)" title="Edit">
                                         <i class="fas fa-edit"></i>
                                     </button>
@@ -87,12 +96,12 @@
             </div>
         </div>
 
-        <!-- Add / Edit Modal (Ndogo - Modal LG) -->
+        <!-- Add / Edit Modal -->
         <div class="modal fade" id="apartmentModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content border-0 shadow-lg rounded-4">
                     
-                    <div class="modal-header" style="background-color: #0b57a4; color: white; border-radius: 1rem 1rem 0 0;">
+                    <div class="modal-header bg-primary text-white" style="border-radius: 1rem 1rem 0 0;">
                         <h5 class="modal-title fw-bold">{{ isEdit ? 'Edit Apartment Details' : 'Add New Apartment' }}</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                     </div>
@@ -242,7 +251,7 @@ const columns = ref(['location', 'price', 'listing_type', 'listing_status', 'att
 const table_options = ref({
     perPage: 10,
     perPageValues: [10, 25, 50, 100],
-    skin: 'table table-hover',
+    skin: 'table table-hover table-bordered mb-0',
     columnsClasses: {
         actions: 'text-center',
         attachments: 'text-center',
@@ -287,7 +296,16 @@ const openModal = (apartment = null) => {
     selectedFiles.value = [];
     if (apartment) {
         isEdit.value = true;
-        form.value = { ...apartment };
+        form.value = { 
+            id: apartment.id, 
+            supplier_id: apartment.supplier_id, 
+            location: apartment.location, 
+            price: apartment.price, 
+            description: apartment.description, 
+            listing_type: apartment.listing_type, 
+            listing_status: apartment.listing_status, 
+            ownership_type: apartment.ownership_type 
+        };
     } else {
         isEdit.value = false;
         form.value = {
@@ -391,30 +409,3 @@ onMounted(() => {
     deleteModal = new window.bootstrap.Modal(document.getElementById('deleteModal'));
 });
 </script>
-
-<style scoped>
-:deep(.VueTables__table th) {
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    color: #6c757d;
-    background-color: #f8f9fa;
-    padding: 15px;
-    border-bottom: 2px solid #e9ecef;
-}
-:deep(.VueTables__table td) {
-    vertical-align: middle;
-    padding: 15px;
-    border-bottom: 1px solid #e9ecef;
-}
-:deep(.VueTables__search-field input) {
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    padding: 8px 12px;
-}
-:deep(.VueTables__limit-field select) {
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    padding: 8px 12px;
-}
-</style>

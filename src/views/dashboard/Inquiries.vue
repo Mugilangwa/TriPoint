@@ -1,5 +1,6 @@
 <template>
     <div class="layout-px-spacing">
+        <!-- Breadcrumb -->
         <teleport to="#breadcrumb">
             <ul class="navbar-nav flex-row">
                 <li>
@@ -17,17 +18,24 @@
 
         <div class="row layout-top-spacing">
             <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
-                <div class="panel br-6 p-4 shadow-sm bg-white rounded">
+                <div class="panel br-6 p-4 shadow-sm bg-white rounded-4 border-0">
                     
-                    <!-- Header & Add Button -->
-                    <div class="d-flex justify-content-between align-items-center mb-4">
+                    <!-- Header & Buttons -->
+                    <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
                         <div>
                             <h4 class="fw-bold mb-1" style="color: #0b57a4;">Property Inquiries</h4>
                             <p class="text-muted small mb-0">Manage all customer questions regarding plots and apartments.</p>
                         </div>
-                        <router-link to="/dashboard/inquiries/form" class="btn btn-light border px-4 py-2 fw-bold rounded-2 shadow-sm">
-                            <i class="fas fa-plus me-2"></i> Add New Inquiry
-                        </router-link>
+                        <div class="d-flex gap-2">
+                            <!-- Kitufe cha Refresh -->
+                            <button class="btn btn-outline-primary px-4 py-2 fw-bold rounded-2 shadow-sm" @click="loadInquiries" :disabled="loading">
+                                <i class="fas fa-sync me-2" :class="{ 'fa-spin': loading }"></i> Refresh
+                            </button>
+                            <!-- Kitufe cha Kuongeza Inquiry -->
+                            <router-link to="/dashboard/inquiries/form" class="btn btn-warning px-4 py-2 fw-bold text-white rounded-2 shadow-sm" style="background-color: #f38218; border: none;">
+                                <i class="fas fa-plus me-2"></i> Add New Inquiry
+                            </router-link>
+                        </div>
                     </div>
 
                     <!-- Loading Spinner -->
@@ -39,6 +47,7 @@
                     <div v-else class="custom-table">
                         <v-client-table :data="inquiries" :columns="columns" :options="table_options">
                             
+                            <!-- Client (Avatar na Jina) -->
                             <template #client="props">
                                 <div class="d-flex align-items-center">
                                     <div class="avatar-circle me-2">
@@ -48,27 +57,37 @@
                                 </div>
                             </template>
 
+                            <!-- Property (Aina, Eneo, Bei) -->
                             <template #property="props">
-                                <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-start">
                                     <i :class="props.row.property_type === 'Plot' ? 'fas fa-map-marked-alt' : 'fas fa-building'" 
-                                       class="me-2" style="color: #0b57a4;"></i>
+                                       class="me-2 mt-1" style="color: #0b57a4; font-size: 1.2rem;"></i>
                                     <div>
                                         <div class="fw-bold">{{ props.row.property_type }}</div>
-                                        <small class="text-muted">{{ props.row.property_details?.location || 'N/A' }}</small>
+                                        <small class="text-muted d-block">{{ props.row.property_details?.location || 'N/A' }}</small>
+                                        <small class="text-muted d-block">
+                                            {{ formatMoney(props.row.property_details?.price) }} 
+                                            <span class="badge bg-light text-dark border ms-1 text-uppercase">
+                                                {{ props.row.property_details?.listing_type }}
+                                            </span>
+                                        </small>
                                     </div>
                                 </div>
                             </template>
 
+                            <!-- Date -->
                             <template #date="props">
                                 <span class="text-muted small">{{ props.row.date }}</span>
                             </template>
 
+                            <!-- Status -->
                             <template #status="props">
                                 <span :class="getStatusClass(props.row.status)" class="badge text-uppercase">
                                     {{ props.row.status }}
                                 </span>
                             </template>
 
+                            <!-- Actions -->
                             <template #actions="props">
                                 <div class="d-flex gap-2 justify-content-center">
                                     <router-link :to="`/dashboard/inquiries/form/${props.row.inquiry_id}`" class="btn btn-sm btn-outline-primary" title="Edit">
@@ -128,7 +147,7 @@ const columns = ref(['client', 'property', 'date', 'status', 'actions']);
 const table_options = ref({
     perPage: 10,
     perPageValues: [10, 25, 50, 100],
-    skin: 'table table-hover',
+    skin: 'table table-hover table-bordered mb-0',
     columnsClasses: {
         actions: 'text-center',
         status: 'text-center'
@@ -137,7 +156,7 @@ const table_options = ref({
     filterable: ['client', 'status'],
     headings: {
         client: 'Client',
-        property: 'Property',
+        property: 'Property Details',
         date: 'Date',
         status: 'Status',
         actions: 'Actions'
@@ -146,6 +165,12 @@ const table_options = ref({
 
 const getInitial = (name) => {
     return name ? name.charAt(0).toUpperCase() : 'C';
+};
+
+// Kazi ya kuformat bei
+const formatMoney = (value) => {
+    if (!value) return 'TZS 0';
+    return new Intl.NumberFormat('en-TZ', { style: 'currency', currency: 'TZS', maximumFractionDigits: 0 }).format(value);
 };
 
 const loadInquiries = async () => {
@@ -195,26 +220,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-:deep(.VueTables__table th) {
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    color: #6c757d;
-    background-color: #f8f9fa;
-    padding: 15px;
-    border-bottom: 2px solid #e9ecef;
-}
-:deep(.VueTables__table td) {
-    vertical-align: middle;
-    padding: 15px;
-    border-bottom: 1px solid #e9ecef;
-}
-:deep(.VueTables__search-field input) {
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    padding: 8px 12px;
-}
-
+/* Avatar (Mduara) */
 .avatar-circle {
     width: 38px;
     height: 38px;

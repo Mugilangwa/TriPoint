@@ -16,7 +16,7 @@
 
         <!-- Loading Spinner -->
         <div v-if="loading" class="d-flex justify-content-center align-items-center" style="min-height: 60vh;">
-            <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+            <div class="spinner-border spinner-border-sm  text-primary " role="status" style="width: 3rem; height: 3rem;"></div>
         </div>
 
         <div v-else class="row layout-top-spacing">

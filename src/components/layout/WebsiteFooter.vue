@@ -35,7 +35,7 @@
                 <div class="col-lg-3 col-md-6">
                     <h6 class="fw-bold text-white mb-4">Our Services</h6>
                     <ul class="list-unstyled small">
-                        <li class="mb-3"><router-link to="/cars" class="text-decoration-none" style="color: #94A3B8;">Car Rental</router-link></li>
+                        <li class="mb-3"><router-link to="/properties" class="text-decoration-none" style="color: #94A3B8;">Car Rental</router-link></li>
                         <li class="mb-3"><router-link to="/properties" class="text-decoration-none" style="color: #94A3B8;">Land & Plots</router-link></li>
                         <li class="mb-3"><router-link to="/properties" class="text-decoration-none" style="color: #94A3B8;">Houses for Sale</router-link></li>
                         <li class="mb-3"><router-link to="/properties" class="text-decoration-none" style="color: #94A3B8;">Houses for Rent</router-link></li>

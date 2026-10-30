@@ -18,50 +18,52 @@
 
         <div class="row layout-top-spacing">
             <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
-                <div class="panel br-6 p-4 shadow-sm bg-white rounded border-0">
+                <div class="panel br-6 p-4 shadow-sm bg-white rounded-4 border-0">
                     
                     <!-- Header & Add Button -->
-                    <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
                         <div>
                             <h4 class="fw-bold mb-1" style="color: #0b57a4;">Vehicle Models</h4>
-                            <p class="text-muted small mb-0">Manage car makes and models (e.g., Toyota Prado, Land Cruiser).</p>
+                            <p class="text-muted small mb-0">Manage car makes and models (e.g., Toyota Prado).</p>
                         </div>
-                        <!-- Kitufe cha Light -->
-                        <button class="btn btn-light border px-4 py-2 fw-bold rounded-2 shadow-sm" @click="openModal()">
+                        <button class="btn btn-warning px-4 py-2 fw-bold text-white rounded-2 shadow-sm" style="background-color: #f38218; border: none;" @click="openModal()">
                             <i class="fas fa-plus me-2"></i> Add New Model
                         </button>
                     </div>
 
-                    <!-- Loading Spinner (Ndogo, Inazunguka) -->
+                    <!-- Loading Spinner -->
                     <div v-if="loading" class="d-flex justify-content-center align-items-center py-5">
-                        <div class="spinner-border text-primary" role="status" style="width: 2.5rem; height: 2.5rem;">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
+                        <div class="spinner-border text-primary" role="status" style="width: 2.5rem; height: 2.5rem;"></div>
                     </div>
 
                     <!-- Data Table -->
                     <div v-else class="custom-table">
+                        <!-- Nimetumia Bootstrap table classes kwenye v-client-table -->
                         <v-client-table :data="models" :columns="columns" :options="table_options">
                             
+                            <!-- Brand / Make -->
                             <template #make="props">
                                 <div class="d-flex align-items-center">
                                     <i class="fas fa-car me-2" style="color: #0b57a4; font-size: 1.2rem;"></i>
-                                    <span class="fw-bold">{{ props.row.make }}</span>
+                                    <span class="fw-bold text-dark">{{ props.row.make }}</span>
                                 </div>
                             </template>
 
+                            <!-- Model Name -->
                             <template #model="props">
                                 <span class="badge bg-light text-dark border px-3 py-2" style="font-size: 0.9rem;">
                                     {{ props.row.model }}
                                 </span>
                             </template>
 
+                            <!-- Full Name -->
                             <template #full_name="props">
                                 <span class="text-muted small">
                                     {{ props.row.make }} {{ props.row.model }}
                                 </span>
                             </template>
 
+                            <!-- Actions -->
                             <template #actions="props">
                                 <div class="d-flex gap-2 justify-content-center">
                                     <button class="btn btn-sm btn-outline-primary" @click="openModal(props.row)" title="Edit">
@@ -83,7 +85,7 @@
             <div class="modal-dialog modal-md modal-dialog-centered">
                 <div class="modal-content border-0 shadow-lg rounded-4">
                     
-                    <div class="modal-header" style="background-color: #0b57a4; color: white; border-radius: 1rem 1rem 0 0;">
+                    <div class="modal-header bg-info text-white" >
                         <h5 class="modal-title fw-bold">{{ isEdit ? 'Edit Vehicle Model' : 'Add New Vehicle Model' }}</h5>
                         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                     </div>
@@ -107,7 +109,7 @@
                     </div>
 
                     <div class="modal-footer bg-light" style="border-radius: 0 0 1rem 1rem;">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-light border px-4" data-bs-dismiss="modal">Cancel</button>
                         <button type="button" class="btn btn-warning px-4 fw-bold text-white" style="background-color: #f38218; border: none;" @click="saveModel" :disabled="loading">
                             <span v-if="loading" class="spinner-border spinner-border-sm me-2"></span>
                             {{ loading ? 'Saving...' : 'Save Model' }}
@@ -117,7 +119,7 @@
             </div>
         </div>
 
-        <!-- Confirmation Delete Modal (Badala ya Alert) -->
+        <!-- Confirmation Delete Modal -->
         <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-sm modal-dialog-centered">
                 <div class="modal-content border-0 shadow-lg rounded-4 text-center">
@@ -164,11 +166,12 @@ const form = ref({
     model: ''
 });
 
+// Nimetumia Bootstrap class 'table table-hover' hapa
 const columns = ref(['make', 'model', 'full_name', 'actions']);
 const table_options = ref({
     perPage: 10,
     perPageValues: [10, 25, 50, 100],
-    skin: 'table table-hover',
+    skin: 'table table-hover table-bordered mb-0', // Bootstrap Table classes
     columnsClasses: {
         actions: 'text-center',
         full_name: 'text-center'
@@ -258,42 +261,9 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* Kuboresha muonekano wa Table (Kuweka safi Bila Rangi ya Bluu) */
-:deep(.VueTables__table) {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-:deep(.VueTables__table th) {
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    color: #6c757d;
-    background-color: #f8f9fa;
-    padding: 15px;
-    border-bottom: 2px solid #e9ecef;
-    text-align: left;
-}
-
-:deep(.VueTables__table td) {
-    vertical-align: middle;
-    padding: 15px;
-    border-bottom: 1px solid #e9ecef;
-}
-
-:deep(.VueTables__table tbody tr:hover) {
-    background-color: #f1f5f9;
-}
-
-:deep(.VueTables__search-field input) {
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    padding: 8px 12px;
-}
-
-:deep(.VueTables__limit-field select) {
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    padding: 8px 12px;
-}
+/* 
+   Nimeondoa zile CSS zote za :deep(.VueTables...). 
+   Sasa tunatumia Bootstrap classes pekee zilizowekwa kwenye 'skin' hapo juu.
+   Hii inafanya kodi kuwa safi (clean) na rahisi kusoma.
+*/
 </style>

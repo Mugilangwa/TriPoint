@@ -17,18 +17,24 @@
 
         <div class="row layout-top-spacing">
             <div class="col-xl-12 col-lg-12 col-sm-12 layout-spacing">
-                <div class="panel br-6 p-4 shadow-sm bg-white rounded">
+                <div class="panel br-6 p-4 shadow-sm bg-white rounded-4 border-0">
                     
-                    <!-- Header & Add Button -->
-                    <div class="d-flex justify-content-between align-items-center mb-4">
+                    <!-- Header & Buttons -->
+                    <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom">
                         <div>
                             <h4 class="fw-bold mb-1" style="color: #0b57a4;">Vehicle Bookings & Hires</h4>
                             <p class="text-muted small mb-0">Manage all vehicle rental bookings, dates, and payments.</p>
                         </div>
-                        <!-- Kitufe hiki kinaelekeza kwenye ukurasa mpya -->
-                        <router-link to="/dashboard/bookings/form" class="btn btn-light border px-4 py-2 fw-bold rounded-2 shadow-sm">
-                            <i class="fas fa-plus me-2"></i> Add New Booking
-                        </router-link>
+                        <div class="d-flex gap-2">
+                            <!-- Kitufe cha Refresh -->
+                            <button class="btn btn-outline-primary px-4 py-2 fw-bold rounded-2 shadow-sm" @click="loadBookings" :disabled="loading">
+                                <i class="fas fa-sync me-2" :class="{ 'fa-spin': loading }"></i> Refresh
+                            </button>
+                            <!-- Kitufe cha Kuongeza Booking -->
+                            <router-link to="/dashboard/bookings/form" class="btn btn-warning px-4 py-2 fw-bold text-white rounded-2 shadow-sm" style="background-color: #f38218; border: none;">
+                                <i class="fas fa-plus me-2"></i> Add New Booking
+                            </router-link>
+                        </div>
                     </div>
 
                     <!-- Loading Spinner -->
@@ -56,7 +62,13 @@
                             <template #dates="props">
                                 <div class="small">
                                     <div><i class="fas fa-calendar-alt text-primary me-1"></i> <strong>From:</strong> {{ props.row.pickup_date }}</div>
-                                    <div><i class="fas fa-calendar-check text-success me-1"></i> <strong>To:</strong> {{ props.row.return_date }}</div>
+                                    <div>
+                                        <i class="fas fa-calendar-check text-success me-1"></i> <strong>To:</strong> {{ props.row.return_date }}
+                                        <!-- HAPA: Kuangalia kama muda umepita (Overdue) -->
+                                        <span v-if="isOverdue(props.row.return_date, props.row.status)" class="badge bg-danger ms-2">
+                                            Overdue
+                                        </span>
+                                    </div>
                                 </div>
                             </template>
 
@@ -131,7 +143,7 @@ const columns = ref(['client', 'vehicle', 'dates', 'payment', 'status', 'actions
 const table_options = ref({
     perPage: 10,
     perPageValues: [10, 25, 50, 100],
-    skin: 'table table-hover',
+    skin: 'table table-hover table-bordered mb-0',
     columnsClasses: {
         actions: 'text-center',
         status: 'text-center',
@@ -153,6 +165,17 @@ const getInitial = (name) => {
     return name ? name.charAt(0).toUpperCase() : 'C';
 };
 
+// HAPA: Kazi ya kuangalia kama tarehe imepita
+const isOverdue = (returnDate, status) => {
+    if (status === 'completed' || status === 'cancelled') return false;
+    
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Weka muda kuwa 00:00 ili kulinganisha tarehe tu
+    
+    const returnD = new Date(returnDate);
+    return returnD < today;
+};
+
 const loadBookings = async () => {
     loading.value = true;
     try {
@@ -166,9 +189,7 @@ const loadBookings = async () => {
     }
 };
 
-// Kuelekeza kwenye ukurasa wa Edit (kama unao)
 const editBooking = (booking) => {
-    // Kama una ukurasa wa edit, elekeza huko. Kama la, tumia query params.
     router.push({ path: `/dashboard/bookings/form/${booking.booking_id}` });
 };
 
@@ -207,26 +228,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-:deep(.VueTables__table th) {
-    font-weight: 600;
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    color: #6c757d;
-    background-color: #f8f9fa;
-    padding: 15px;
-    border-bottom: 2px solid #e9ecef;
-}
-:deep(.VueTables__table td) {
-    vertical-align: middle;
-    padding: 15px;
-    border-bottom: 1px solid #e9ecef;
-}
-:deep(.VueTables__search-field input) {
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    padding: 8px 12px;
-}
-
 /* Avatar (Mduara) */
 .avatar-circle {
     width: 35px;
