@@ -320,12 +320,12 @@
         <section class="py-5 text-center" style="background-color: #f38218; color: white;">
             <div class="container">
                 <h2 class="fw-bold mb-3">International Missions and National Events</h2>
-                <p class="mb-4">We support UN, NGOs, Embassies, Government Projects, and Conferences across Tanzania.</p>
+                <p class="mb-4">We support International Organization, NGOs, Embassies, Government Projects, and Conferences across Tanzania.</p>
                 
                 <div class="d-flex justify-content-center flex-wrap gap-4 mt-4 fw-bold fs-5">
                     <div class="d-flex flex-column align-items-center">
                         <i class="fas fa-globe fs-1 mb-2"></i>
-                        <span>UN & NGOs</span>
+                        <span>International Organizations & NGOs</span>
                     </div>
                     <div class="d-flex flex-column align-items-center">
                         <i class="fas fa-handshake fs-1 mb-2"></i>
