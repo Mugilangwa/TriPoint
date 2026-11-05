@@ -1,6 +1,10 @@
 // router.js
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import store from '../store';
+
+
+
+
 
 const routes = [
     // ==========================================
@@ -175,7 +179,7 @@ const routes = [
 ];
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     linkExactActiveClass: 'active',
     routes,
     scrollBehavior(to, from, savedPosition) {
