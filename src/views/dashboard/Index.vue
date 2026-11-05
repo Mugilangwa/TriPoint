@@ -237,7 +237,10 @@ const loadDashboardData = async () => {
 };
 
 onMounted(() => {
-    loadDashboardData();
+   if(localStorage.getItem('access_token')){
+      loadDashboardData();
+   }
+    
 });
 </script>
 

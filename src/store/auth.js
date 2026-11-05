@@ -168,12 +168,13 @@ const actions = {
         try {
             const refresh = localStorage.getItem('refresh_token');
 
-            if (refresh) {
-                await axiosInstance.post('/logout/', {
-                    refresh
-                });
-            }
+            // if (refresh) {
+            //     await axiosInstance.post('/logout/', {
+            //         refresh
+            //     });
+            // }
 
+            await axiosInstance.post('/logout');
             clearAllAuthData();
 
             return { success: true };
