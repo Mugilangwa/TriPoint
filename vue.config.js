@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-    publicPath: '/',
+    publicPath: '/TriPoint',
 
     pluginOptions: {
         i18n: {
