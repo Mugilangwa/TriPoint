@@ -195,6 +195,9 @@ const inquiryForm = ref({
     message: ''
 });
 
+
+const test = ref('');
+
 const type = route.params.type;
 const id = route.params.id;
 const isPlot = computed(() => type === 'plot');
