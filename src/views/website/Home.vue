@@ -42,7 +42,7 @@
                         
                         <!-- Paragrafu Fupi yenye Nguvu -->
                         <p class="text-light mb-4 fs-5 mt-3" style="max-width: 650px; font-weight: 400; line-height: 1.6;">
-                            Your ultimate partner for <strong>Premium Car Rentals</strong>, <strong>Logistics Solutions</strong>, and <strong>Verified Real Estate</strong>. We serve UN agencies, NGOs, and corporate clients with unmatched reliability across Tanzania.
+                            Your ultimate partner for <strong>Premium Car Rentals</strong>, <strong>Logistics Solutions</strong>, and <strong>Verified Real Estate</strong>. We serve International Organizations agencies, NGOs, and corporate clients with unmatched reliability across Tanzania.
                         </p>
                         
                         <div class="d-flex gap-3 flex-wrap mt-4">
@@ -73,7 +73,7 @@
             <div class="container">
                 <h2 class="fw-bold mb-3 text-dark">Trusted Partner in Dar es Salaam</h2>
                 <p class="text-muted mx-auto" style="max-width: 850px; font-size: 1.05rem;">
-                    TRIPOINT LIMITED is your one-stop partner for Logistics & Fleet Solutions and Real Estate. We specialize in supporting UN agencies, NGOs, Embassies, and corporate clients with reliable transport and verified properties.
+                    TRIPOINT LIMITED is your one-stop partner for Logistics & Fleet Solutions and Real Estate. We specialize in supporting International Organizations agencies, NGOs, Embassies, and corporate clients with reliable transport and verified properties.
                 </p>
             </div>
         </section>
@@ -205,9 +205,9 @@
                         <div class="feature-card p-4 h-100 text-start">
                             <i class="fas fa-globe-africa mb-3 d-block" style="font-size: 3rem; color: #198754;"></i>
                             
-                            <h5 class="fw-bold text-dark mb-1">NGO & UN</h5>
+                            <h5 class="fw-bold text-dark mb-1">NGO & International Organizations</h5>
                             <h6 class="mb-3" style="color: #f38218; font-size: 0.9rem; font-weight: 600;">Mission Ready</h6>
-                            <p class="text-muted small mb-0">Extensive experience working with UN agencies, NGOs, and diplomatic missions.</p>
+                            <p class="text-muted small mb-0">Extensive experience working with International Organizations agencies, NGOs, and diplomatic missions.</p>
                         </div>
                     </div>
 

@@ -175,7 +175,7 @@ const slides = [
     {
         url: new URL('@/assets/images/images/img12.jpeg', import.meta.url).href,
         title: 'International Missions',
-        caption: 'Supporting UN agencies, NGOs, and Embassies.'
+        caption: 'Supporting International Organizations agencies, NGOs, and Embassies.'
     },
 ];
 

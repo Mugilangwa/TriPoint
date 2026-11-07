@@ -36,7 +36,7 @@
                         <div class="d-flex gap-3 mt-4">
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-check-circle fs-5 me-2" style="color: #0b57a4;"></i>
-                                <span class="fw-bold text-dark">NGO & UN Ready</span>
+                                <span class="fw-bold text-dark">NGO & International Organizations Ready</span>
                             </div>
                             <div class="d-flex align-items-center">
                                 <i class="fas fa-shield-alt fs-5 me-2" style="color: #0b57a4;"></i>
